@@ -1,0 +1,283 @@
+
+\documentclass[a4paper,9pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{microtype}
+\usepackage{helvet}
+\usepackage{xcolor}
+%\usepackage{extsizes}
+
+%\usepackage{graphicx}
+%\usepackage{tikz}
+%\usepackage{multirow}
+%\usepackage{wasysym}
+%\usepackage{rotating}
+%\usepackage{wrapfig}
+
+
+%\usepackage{tikz}
+%\usetikzlibrary{snakes,arrows,shapes}
+\renewcommand{\familydefault}{\sfdefault}
+
+\lstdefinelanguage{JavaScript}{
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var,
+if, in, while, do, else, case, break},
+keywordstyle=\color{blue}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle=\color{darkgray}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{purple}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+
+\lstdefinelanguage{Text}{
+keywords={},
+keywordstyle=\color{blue}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle=\color{darkgray}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{purple}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+
+
+
+\newcommand{\jslisting}{ \lstset{
+language=JavaScript,
+emphstyle=\textbf,
+stringstyle=\texttt,
+aboveskip=10pt,
+belowskip=10pt,
+linewidth=\columnwidth,
+breaklines=true,
+basicstyle=\ttfamily,
+frame=single,
+numbers=left,
+columns=flexible,
+showspaces=false,
+showstringspaces=false,
+moredelim=[is][\textbf]{|}{|}
+}}
+
+\newcommand{\plainlisting}{ \lstset{
+language=Text,
+emphstyle=\textbf,
+stringstyle=\texttt,
+aboveskip=10pt,
+belowskip=10pt,
+linewidth=\columnwidth,
+breaklines=true,
+basicstyle=\ttfamily,
+frame=single,
+numbers=left,
+columns=flexible,
+showspaces=false,
+showstringspaces=false,
+%moredelim=[is][\textbf]{|}{|}
+}}
+
+\title{Mitsubishi API}
+\renewcommand{\abstractname}{Description}
+\author{John Doe}
+\date{Version v2}
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+		The following document describes the API of mitsubishi used in Rolf Mitsubishi iOS app (RMA API). 
+\end{abstract}
+
+
+%\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section*{Introduction}
+	Supported authentication schemes:
+		
+				\begin{itemize}
+				
+				\end{itemize}
+	
+	Base URI:
+		http://mitsubishi-motors.ru/xml/api.php?method=
+		
+		\section{Main methods}
+		
+		Main methods of RMA API 
+		
+		\texttt{http://mitsubishi-motors.ru/xml/api.php?method=/user/\fbox{user-id}}
+
+		\begin{tabular}{|l|l|}\hline
+		\textbf{user-id} & user ID \\
+									\hline
+							\end{tabular}     			        
+   			        
+		
+	%\newpage
+		\subsection{Get all dealers}
+		Returns all dealers that work with Rolf and Mitsubishi
+		\subsubsection*{URI}
+					 
+			\texttt{
+			http://mitsubishi-motors.ru/xml/api.php?method=GetDealers}		
+		\subsubsection*{Parameters}
+		\begin{tabular}{|l|l|}\hline
+		\end{tabular}  
+		
+		\subsubsection*{HTTP Method}
+		\texttt{GET}
+		\subsubsection*{Formats}
+		
+	\begin{itemize}
+		
+		\item \texttt{text/xml}
+	
+	\end{itemize}
+	
+		\subsubsection*{Authentication}
+		not required
+		\subsubsection*{Request Entities}
+		n/a
+		\subsubsection*{Responses}
+		
+		\begin{description}
+		
+			\item[\texttt{201 Created}] User account has been created. The location header contains its URI.
+			\item[\texttt{400 Bad Request}] The provided data are incomplete or invalid.
+			\item[\texttt{403 Forbidden}] The service instance does not allow the creation of new user accounts.
+			\item[\texttt{409 Conflict}] The user account has not been created, because there already exists an account with matching parameters.
+		\end{description}
+	
+		\subsubsection*{Response Entities}
+		
+		\xmllisting
+		\lstset{caption=}
+		\begin{lstlisting}
+	{
+		<dealers count="96" status="0">
+		<dealer id="1">
+		<city_id>2</city_id>
+		<coordx>46.333485</coordx>
+		<coordy>48.064251</coordy>
+		<name>Колесо</name>
+		<address>ул. Н. Островского, 148</address>
+		<tel>(8512) 50-10-01</tel>
+		<description/>
+		<image>
+		http://live.adm.mitsucar.ru/external-files/dealers/
+		</image>
+		<thumb>
+		http://live.adm.mitsucar.ru/external-files/dealers/
+		</thumb>
+		</dealer>
+		<dealer id="5">
+		<city_id>7</city_id>
+		<coordx>56.1505546569824</coordx>
+		<coordy>40.3803787231445</coordy>
+		<name>Техцентр Гранд</name>
+		<address>ул. Тракторная, д. 33</address>
+		<tel>(4922) 45-03-20</tel>
+		<description/>
+		<image>
+		http://live.adm.mitsucar.ru/external-files/dealers/1a8dd9078471fd7a6e53a92e1f017848.jpg
+		</image>
+		<thumb>
+		http://live.adm.mitsucar.ru/external-files/dealers/1a8dd9078471fd7a6e53a92e1f017848.jpg
+		</thumb>
+		</dealer>
+	</dealers>
+	}
+		\end{lstlisting}
+	
+	%\newpage
+		\subsection{Get all campaigns}
+		Returns all active campaigns across dealers that work with Rolf and Mitsubishi
+		\subsubsection*{URI}
+					 
+			\texttt{
+			http://mitsubishi-motors.ru/xml/api.php?method=GetCampaigns}		
+		\subsubsection*{Parameters}
+		\begin{tabular}{|l|l|}\hline
+		\end{tabular}  
+		
+		\subsubsection*{HTTP Method}
+		\texttt{GET}
+		\subsubsection*{Formats}
+		
+	\begin{itemize}
+		
+		\item \texttt{text/xml}
+	
+	\end{itemize}
+	
+		\subsubsection*{Authentication}
+		required
+		\subsubsection*{Request Entities}
+		n/a
+		\subsubsection*{Responses}
+		
+		\begin{description}
+		
+			\item[\texttt{200 OK}] The data set is returned as the response entity.
+			\item[\texttt{404 Not Found}] There is no user with this user ID.
+		\end{description}
+	
+		\subsubsection*{Response Entities}
+		
+		\xmllisting
+		\lstset{caption=}
+		\begin{lstlisting}
+{
+	<campaign id="170">
+	<dealer_id>66</dealer_id>
+	<city_id>48</city_id>
+	<dealer_name>Автомир-Мицубиши</dealer_name>
+	<city_name>Санкт-Петербург</city_name>
+	<title>Специальные условия в Автомире!</title>
+	<date>11.09.2011</date>
+	<intro>
+	Если Вы решили приобрести автомобиль Mitsubishi, то это наиболее выгодно сделать именно сейчас и именно в салоне торгово-сервисного комплекса Автомир - Санкт-Петербург по специальным условиям только до конца ноября.
+	</intro>
+	<description>
+	<p>Если Вы решили приобрести автомобиль Mitsubishi, то это наиболее выгодно сделать именно сейчас и именно в салоне торгово-сервисного комплекса Автомир - Санкт-Петербург, так как Вас ждет большой выбор автомобилей и интересное предложение при покупке автомобилей Mitsubishi ASX, Lancer, L200, Outlander, Pajero Sport и Pajero IV.</p><p>В нашем салоне Вы найдете:</p><ul><li>Большой выбор наиболее популярных моделей Mitsubishi в наличии: <a href=\"http://www.avtomir-mitsubishi.ru/auto/pajero-sport-new/\">Pajero Sport</a>, <a href=\"http://www.avtomir-mitsubishi.ru/auto/pajero-iv/\">Pajero IV</a>, <a href=\"http://www.avtomir-mitsubishi.ru/auto/lancer-x/\">Lancer X</a>, <a href=\"http://www.avtomir-mitsubishi.ru/auto/asx/\">ASX</a>, <a href=\"http://www.avtomir-mitsubishi.ru/auto/outlander-xl-new/\">Outlander XL</a>,<a href=\"http://www.avtomir-mitsubishi.ru/auto/l200/\"> L200</a></li><li>Выгодные условия кредитования - <a href=\"http://www.avtomir-mitsubishi.ru/for-byers/loan/mitsubishi-motors-finance/\">от 2,9% годовых</a></li><li>Внимательный и приветливый персонал</li></ul><table border=\"0\" style=\"width: 721px; height: 545px\"><tbody><tr><td> </td><td><p align=\"center\"> <strong>Модель</strong></p></td><td><p align=\"center\"><strong>Спецпредложение </strong></p></td></tr><tr><td> <img src=\"http://files.mitsubishi-motors.ru/img/3796f02d0407eef/384293e34f22053/63efc7d6eb1165c/fbf0b938823dea903e7ab0c19a1b295f.jpg\" border=\"0\" alt=\"Закрыть окно\" /></td><td><p align=\"center\"><strong>Mitsubishi ASX</strong></p></td><td><p align=\"center\"><strong>Выгода до 70 000 рублей</strong></p></td></tr><tr><td> <img src=\"http://files.mitsubishi-motors.ru/img/3796f02d0407eef/384293e34f22053/63efc7d6eb1165c/b8b56f28f59f931df9a5d283b087d20f.jpg\" border=\"0\" width=\"216\" height=\"153\" /></td><td><p align=\"center\"> <strong>Mitsubishi Lancer X 1.5 л и 1.8 л</strong></p></td><td><p align=\"center\"><strong>Выгода от дилера*</strong></p></td></tr><tr><td> <img src=\"http://files.mitsubishi-motors.ru/img/3796f02d0407eef/384293e34f22053/63efc7d6eb1165c/a57089c08f88b7139a5a522c13e941db.jpg\" border=\"0\" width=\"216\" height=\"160\" /></td><td><p align=\"center\"> <strong>Mitsubishi Outlander</strong></p></td><td><p align=\"center\"><strong>Выгода до 70 000 рублей </strong></p></td></tr><tr><td> <img src=\"http://files.mitsubishi-motors.ru/img/3796f02d0407eef/384293e34f22053/63efc7d6eb1165c/ac7707b5bb1e7d4a65ce880aa338935a.jpg\" border=\"0\" width=\"216\" height=\"159\" /></td><td><p align=\"center\"> <strong>Mitsubishi Pajero Sport 2,5D</strong></p></td><td><p align=\"center\"> <strong>Выгода от дилера*</strong></p></td></tr><tr><td> <img src=\"http://files.mitsubishi-motors.ru/img/3796f02d0407eef/384293e34f22053/63efc7d6eb1165c/c5e374e1f155efd8fc4909bf59c02886.jpg\" border=\"0\" width=\"216\" height=\"160\" /></td><td><p align=\"center\"> <strong>Mitsubishi Pajero IV </strong></p></td><td><p align=\"center\"> <strong>Выгода от дилера*</strong></p></td></tr><tr><td> <img src=\"http://files.mitsubishi-motors.ru/img/3796f02d0407eef/384293e34f22053/63efc7d6eb1165c/2fe620fb978846ac018b86fef24580ca.jpg\" border=\"0\" /></td><td><p align=\"center\"> <strong>Mitsubishi L200</strong></p></td><td><p align=\"center\">  <strong> Выгода от дилера*</strong></p></td></tr></tbody></table><p>*Подробности у консультантов или по телефону (812) 495-41-41.</p><p>Торопитесь, предложение ограничено и действует только до конца ноября!</p>
+	</description>
+	</campaign>
+	<campaign id="194">
+	<dealer_id>33</dealer_id>
+	<city_id>27</city_id>
+	<dealer_name>Mitsubishi на Коломенской</dealer_name>
+	<city_name>Москва</city_name>
+	<title>Акция 2+1!</title>
+	<date>10.31.2011</date>
+	<intro>
+	При окраске 2-х деталей Вашего автомобиля - 3-я красится в подарок! Только до 31 декабря 2011 года!
+	</intro>
+	<description>
+	<p><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; color: red; font-size: 16pt\">MITSUBISHI на Коломенской</span></strong></p><p align=\"center\"><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; color: red; font-size: 16pt\"></span></strong><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 16pt\">Центр Кузовного Ремонта</span></strong></p><p><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 16pt\"></span></strong><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; color: red; font-size: 16pt; font-weight: normal\"></span></strong><em><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\">Воспользуйтесь уникальным предложением:</span></em></p><p><em><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"></span></em><em><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\">с 01.12.11 по 31.12.11 гг.</span></em></p><p align=\"center\"><em><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"></span></em><em><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"></span></em><strong><u><span style=\"font-family: \'Calibri\',\'sans-serif\'; color: red; font-size: 24pt\">Акция</span></u></strong><strong><u><span style=\"font-family: \'Brush Script Std\'; color: red; font-size: 24pt\"> 2+1!</span></u></strong></p><p align=\"center\"><strong><u><span style=\"font-family: \'Brush Script Std\'; color: red; font-size: 24pt\"></span></u></strong><span style=\"font-family: \'Brush Script Std\'; font-size: 8.5pt\"></span><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\">При <u>окраске 2-х</u> деталей Вашего автомобиля - <u>3-я красится в подарок</u>!*</span></strong></p><p align=\"center\"><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"></span></strong><span style=\"font-family: \'Arial\',\'sans-serif\'; font-size: 14pt\"></span><strong><u><span style=\"font-family: \'Brush Script Std\'; color: red; font-size: 24pt\">900 </span></u></strong><strong><u><span style=\"font-family: \'Cambria\',\'serif\'; color: red; font-size: 24pt\">руб.</span></u></strong></p><p align=\"center\"><strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\">- нормо-час кузовных работ!*</span></strong><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"> </span></p><p><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"></span><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\">*При наличном расчете.</span></p><p><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"></span><u><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\">Подробности  по телефону (495) 734-91-90</span></u><u><span style=\"font-family: \'Calibri\',\'sans-serif\'; font-size: 14pt\"></span></u> </p>
+	</description>
+	</campaign>
+}
+		\end{lstlisting}
+	The data returned.
+		\newpage
+		
+		
+	
+
+		\end{document}
+
+	
