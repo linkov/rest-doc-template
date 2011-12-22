@@ -4,6 +4,7 @@ log/*.log
 *.log
 /tmp/
 /work/
+/output/
 doc/
 *.swp
 *~
