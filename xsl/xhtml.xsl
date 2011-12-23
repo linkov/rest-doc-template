@@ -184,7 +184,7 @@ a{
 			
 			</script>
 
-				<title><xsl:value-of select="api:name" /> - RESTful API Documentation</title>				
+				<title><xsl:value-of select="api:name" /> - API Documentation</title>				
 			</head>
 			<body>
 				<div id="watermark">				
